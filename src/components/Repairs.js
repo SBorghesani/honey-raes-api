@@ -1,7 +1,7 @@
-import React from "react"
-import { CustomerList } from "./customers/CustomerList"
-import { EmployeeList } from './employees/Employees';
-import { TicketList } from './serviceTickets/TicketList';
+import React from "react";
+import { NavBar } from './nav/NavBar';
+import { ApplicationViews } from "./ApplicationViews";
+import './Repairs.css'
 
 export const Repairs = () => { 
 
@@ -10,16 +10,11 @@ export const Repairs = () => {
 
     return (
         <>
+            <NavBar/>
             <h1>Honey Rae's Repairs</h1>
 
-            <h2>Customer List:</h2>
-            <CustomerList/>
-
-            <h2>Employee List:</h2>
-            <EmployeeList/>
-
-            <h2>Ticket List:</h2>
-            <TicketList/>
+            <ApplicationViews/>
+            
         </>
     )
     
