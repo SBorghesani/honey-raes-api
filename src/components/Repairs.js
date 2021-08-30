@@ -1,21 +1,42 @@
 import React from "react";
-import { NavBar } from './nav/NavBar';
+import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
-import './Repairs.css'
+import { NavBar } from "./nav/NavBar";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
+import "./Repairs.css";
 
-export const Repairs = () => { 
+export const Repairs = () => {
 
-  document.title = "Honey Rae Repairs"
-        
+    document.title = "Honey Rae Repairs"
+
 
     return (
         <>
-            <NavBar/>
             <h1>Honey Rae's Repairs</h1>
+            <Route
+                render={() => {
+                    if (localStorage.getItem("honey_customer")) {
+                        return (
+                            <>
+                                <NavBar />
+                                <ApplicationViews />
+                            </>
+                        );
+                    } else {
+                        return <Redirect to="/login" />;
+                    }
+                }}
+            />
 
-            <ApplicationViews/>
-            
+            <Route path="/login">
+                <Login />
+            </Route>
+            <Route path="/register">
+                <Register />
+            </Route>
+
         </>
     )
-    
+
 }
