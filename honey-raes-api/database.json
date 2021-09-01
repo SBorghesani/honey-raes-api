@@ -86,12 +86,12 @@
   ],
   "serviceTickets": [
     {
-      "id": 1,
       "customerId": 4,
-      "employeeId": 1,
+      "employeeId": 3,
       "description": "iPhone case cracked. Please replace.",
       "emergency": false,
-      "dateCompleted": "2021-05-26"
+      "dateCompleted": "2021-05-26",
+      "id": 1
     },
     {
       "id": 2,
@@ -102,20 +102,12 @@
       "dateCompleted": ""
     },
     {
+      "customerId": 11,
+      "employeeId": 3,
       "description": "internet explorer sucks",
       "emergency": false,
-      "customerId": 11,
-      "employeeId": 1,
       "dateCompleted": "",
       "id": 3
-    },
-    {
-      "description": "Blue Screen of death",
-      "emergency": true,
-      "customerId": 11,
-      "employeeId": 1,
-      "dateCompleted": "",
-      "id": 4
     }
   ]
 }

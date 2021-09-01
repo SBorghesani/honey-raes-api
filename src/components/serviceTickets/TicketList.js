@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
+import './Tickets.css'
 
 
 export const TicketList = () => {
@@ -16,6 +17,20 @@ export const TicketList = () => {
         },
         []
     )
+    const deleteTicket = (id) => {
+        fetch(`http://localhost:8088/serviceTickets/${id}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
+                .then(response => response.json())
+                .then((data) => {
+                    updateTickets(data)
+                })
+            })
+    }
+
+
 
     return (
         <>
@@ -27,9 +42,16 @@ export const TicketList = () => {
                 tickets.map(
                     (ticket) => {
                         return <div key={`ticket--${ticket.id}`}>
-                            <p>{ticket.description} submitted by {ticket.customer.name} and worked on by {ticket.employee.name}</p>
+                            <p className={`ticket ${ticket.emergency ? 'emergency' : ''}`}>
+                                {ticket.emergency ? "🚑" : ""} <Link to={`/tickets/${ticket.id}`}>{ticket.description}</Link>
+                                <button onClick={() => {
+                                    deleteTicket(ticket.id)
+                                }}>Delete</button>
+                            </p>
+
                         </div>
                     }
+
                 )
             }
         </>
