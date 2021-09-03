@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { createNewEmployee } from "../ApiManager";
 
 export const EmployeeForm = () => {
     const [employee, updateEmployee] = useState({
@@ -16,15 +17,7 @@ export const EmployeeForm = () => {
             specialty: employee.specialty
         }
 
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newEmployee)
-        }
-
-        return fetch("http://localhost:8088/employees", fetchOptions)
+        return createNewEmployee(newEmployee)
             .then(() => {
                 history.push("/employees")
             })
@@ -39,7 +32,7 @@ export const EmployeeForm = () => {
                     <input
                         onChange={
                             (event) => {
-                                const copyState = {...employee}
+                                const copyState = { ...employee }
                                 copyState.name = event.target.value
                                 updateEmployee(copyState)
                             }
@@ -47,7 +40,7 @@ export const EmployeeForm = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Your Name"/>
+                        placeholder="Your Name" />
                 </div>
             </fieldset>
             <fieldset>
@@ -56,19 +49,19 @@ export const EmployeeForm = () => {
                     <input
                         onChange={
                             (event) => {
-                                const copyState = {...employee}
+                                const copyState = { ...employee }
                                 copyState.specialty = event.target.value
                                 updateEmployee(copyState)
                             }
                         }
                         type="text"
                         className="form-control"
-                        placeholder="Your Specialty"/>
+                        placeholder="Your Specialty" />
                 </div>
             </fieldset>
-            
+
             <button className="btn btn-primary" onClick={submitEmployee}>
-                Submit 
+                Submit
             </button>
         </form>
     )

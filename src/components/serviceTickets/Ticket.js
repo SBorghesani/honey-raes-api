@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams, useHistory } from "react-router-dom"
+import { createNewTicket, getAllEmployees, getServiceTicket } from "../ApiManager"
 
 export const Ticket = () => {
     const [ticket, assignTicket] = useState({})  // State variable for current ticket object
@@ -9,8 +10,7 @@ export const Ticket = () => {
 
     useEffect(
         () => {
-            fetch(`http://localhost:8088/serviceTickets/${ticketId}?_expand=customer&_expand=employee`)
-                .then(res => res.json())
+            getServiceTicket(ticketId)
                 .then((data) => {
                     assignTicket(data)
                 })
@@ -25,8 +25,7 @@ export const Ticket = () => {
     // Fetch all employees
     useEffect(
         () => {
-            fetch(`http://localhost:8088/employees`)
-                .then(res => res.json())
+            getAllEmployees()
                 .then(syncEmployees)
         },
         []  // Empty dependency array only reacts to JSX initial rendering
@@ -45,15 +44,9 @@ export const Ticket = () => {
         }
 
         // Perform the PUT HTTP request to replace the resource
-        fetch(`http://localhost:8088/serviceTickets/${ticketId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updatedTicket)
-        })
+        createNewTicket(ticketId, updatedTicket)
             .then(() => {
-                history.push("/tickets")
+                history.push("/serviceTickets")
             })
     }
 

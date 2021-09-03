@@ -65,6 +65,18 @@
       "address": "555 Nunya Blvd",
       "email": "stefan@borghesani.com",
       "id": 11
+    },
+    {
+      "name": "Daniel Borghesani",
+      "address": "555 Hollywood Blvd",
+      "email": "daniel@borghesani.com",
+      "id": 12
+    },
+    {
+      "name": "Stefanie Laczko",
+      "address": "111 222 rd.",
+      "email": "stefanie@laczko.com",
+      "id": 13
     }
   ],
   "employees": [
@@ -82,30 +94,35 @@
       "name": "Gene Kreemer",
       "specialty": "Tinkering",
       "id": 3
+    },
+    {
+      "name": "Bobby Bottleservice",
+      "specialty": "Ghossts - no offense, none taken",
+      "id": 4
     }
   ],
   "serviceTickets": [
     {
       "customerId": 4,
-      "employeeId": 3,
+      "employeeId": 4,
       "description": "iPhone case cracked. Please replace.",
       "emergency": false,
       "dateCompleted": "2021-05-26",
       "id": 1
     },
     {
-      "id": 2,
       "customerId": 7,
       "employeeId": 2,
       "description": "Cannot connect to any wifi.",
       "emergency": true,
-      "dateCompleted": ""
+      "dateCompleted": "",
+      "id": 2
     },
     {
-      "customerId": 11,
-      "employeeId": 3,
-      "description": "internet explorer sucks",
-      "emergency": false,
+      "description": "whats a wifi?",
+      "emergency": true,
+      "customerId": 13,
+      "employeeId": 1,
       "dateCompleted": "",
       "id": 3
     }
